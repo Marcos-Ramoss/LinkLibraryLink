@@ -20,4 +20,5 @@ public class Emprestimo {
     private String idLivro;
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucaoPrevista;
+    private LocalDate dataDevolucao;
 } 

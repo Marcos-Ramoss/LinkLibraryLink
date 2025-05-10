@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
 
 @Data
 @Document(collection = "livros")
@@ -22,4 +23,6 @@ public class Livro {
     private String isbn;
     private Integer quantidadeExemplares;
     private String categoria;
+    private LocalDate dataPublicacao;
+    private Boolean disponivel;
 } 

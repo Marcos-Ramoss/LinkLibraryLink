@@ -22,4 +22,5 @@ public class Usuario {
     private String matricula;
     private String email;
     private TipoUsuario tipoUsuario;
+    private String senha;
 }

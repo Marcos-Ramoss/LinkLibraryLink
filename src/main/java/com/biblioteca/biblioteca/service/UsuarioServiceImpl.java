@@ -8,6 +8,7 @@ import com.biblioteca.biblioteca.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
@@ -27,11 +28,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
         if (usuarioRepository.findByEmail(usuarioDTO.email()).isPresent()) {
             throw new DataIntegrityViolationException("E-mail já cadastrado");
         }
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         Usuario usuario = Usuario.builder()
                 .nome(usuarioDTO.nome())
                 .matricula(usuarioDTO.matricula())
                 .email(usuarioDTO.email())
                 .tipoUsuario(TipoUsuario.valueOf(usuarioDTO.tipoUsuario().toUpperCase()))
+                .senha(encoder.encode(usuarioDTO.senha()))
                 .build();
         return usuarioRepository.save(usuario);
     }
